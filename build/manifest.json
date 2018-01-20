@@ -1,0 +1,35 @@
+{
+  "short_name": "TicTocks",
+  "name": "TicTocks",
+  "icons": [
+    {
+      "src": "tictock.png",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ],
+  "start_url": "./index.html",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff",
+
+  "web": {
+"client_id": "531446788974-39st0m4chhlacn8k9mr3a7jme5t0f2o3.apps.googleusercontent.com",
+"project_id": "employeeattendance-1df68",
+"auth_uri": "https://accounts.google.com/o/oauth2/auth",
+"token_uri": "https://accounts.google.com/o/oauth2/token",
+"auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+"client_secret": "O9JKQYiSs5uikOWN0zuSQ2lo",
+"redirect_uris": [
+"https://employeeattendance-1df68.firebaseapp.com/__/auth/handler"
+],
+"javascript_origins": [
+"http://localhost",
+"http://localhost:5000",
+"https://employeeattendance-1df68.firebaseapp.com"
+]
+}
+}
+
+
+

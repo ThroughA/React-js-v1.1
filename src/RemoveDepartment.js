@@ -10,11 +10,8 @@ import EmployeeMenuHeader from './EmployeeMenuHeader'
 import Maintenance from './Maintenance'
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
-import CryptoJS from 'crypto-js' ;
 
 import AddNewDepartment from './AddNewDepartment';
-import RoleAddRemove from './RoleAddRemove';
-
 const required = (value, props) => {
   if (!value || (props.isCheckable && !props.checked)) {
     return <span className="form-error is-visible">Required</span>;
@@ -40,29 +37,25 @@ class RemoveDepartment extends Component{
         this.state = {
 
             department: '',
-           valid:false,
-           companyId:'',
+           
                       };
           }
 
      
-          handleUserInput = (e) => {
-            const name = e.target.name;
-            const value = e.target.value;
-            this.setState({[name]: value,
-                         valid:true,
-                         },
-
-                          );
-        }
+          handleAddNew(value) {
+            this.setState({
+                department :value,
+            });
+          }
+      
           componentDidMount() {
-            /*//for drop down
+            //for drop down
             alert('componentDidMount');
-          */
-          var department=JSON.parse(CryptoJS.AES.decrypt(localStorage.getItem('Departments'),"shinchanbaby").toString(CryptoJS.enc.Utf8));
-         /* console.log(department);
-         */ var dept;
-          dept += '<option  value="" disabled selected hidden>Select a department</option>';
+          
+          var department=JSON.parse(CryptoJS.AES.decrypt(localStorage.getItem('Department'),"shinchanbaby").toString(CryptoJS.enc.Utf8));
+          console.log(department);
+          var dept;
+          dept += '<option value="" disabled selected hidden>Select a department</option>';
             $.each(department, function (i, item) {
             
               dept += '<option value="' + item.department + '">'+item.department+ '</option>'
@@ -70,87 +63,40 @@ class RemoveDepartment extends Component{
             });
           $("#department").append(dept);
           
+            
           }
-          
-
+     
 
          
       RemoveDepartmentFunc(){
     
-    /*alert(this.state.department);
-    */var companyId=CryptoJS.AES.decrypt(localStorage.getItem('CompanyId'),"shinchanbaby").toString(CryptoJS.enc.Utf8)
-		this.state.companyId=companyId;
-		this.setState({
-			companyId:companyId,
-		});
-             /*alert(JSON.stringify({
-
-              department: this.state.department,
-           
-           companyId:this.state.companyId,}
-               
-              ));
-            */ var self=this;
+    alert(this.state.department);
+    this.setState({
+         });
+             alert(JSON.stringify(this.state));
              $.ajax({
                     type: 'POST',
-                    data:JSON.stringify(
-                      {
-
-                        department: this.state.department,
-                     
-                     companyId:this.state.companyId,}
-                    ),
-                    url: "http://13.127.39.136:8080/EmployeeAttendenceAPI/employee/deletedepartment",
+                    data:JSON.stringify(this.state),
+                    url: "https://192.168.0.104:8443/EmployeeAttendenceAPI/employee/deletedepartment",
                     contentType: "application/json",
                     dataType: 'json',
                     async:false,
                     success: function(data,textStatus,jqXHR)
                          {
-                      /* console.log("data",data);
-                      */ if(data.authorization=="DELETED"){
+                       console.log(data);
                        confirmAlert({
-                                title: 'Removed ',                        // Title dialog
-                                message: 'successfully Removed  '+ self.state.department,               // Message dialog
-                                confirmLabel: 'Ok',                           // Text button confirm
+                            title: 'Removed Department',                        // Title dialog
+                            message: 'successfully Removed Department  '+data.department,            // Message dialog
+                            confirmLabel: 'Ok',                           // Text button confirm
                                                       
                             
                              })
-                       var department=JSON.parse(CryptoJS.AES.decrypt(localStorage.getItem('Departments'),"shinchanbaby").toString(CryptoJS.enc.Utf8));
-                     /* console.log(department);
-                     */ var del=self.state.department;
-                      var key;
-                      var i=department.length;
-                     /* console.log(i);
-                     */
-                    while(i--){
-                      if(del== department[i].department )
-                        {
-                          key=i; 
-                          department.splice(i,1);
-                       } 
-                        
-                    }
-                    
-                  /*  console.log(department);
-                  */  localStorage.setItem('Department', CryptoJS.AES.encrypt(JSON.stringify(department),"shinchanbaby"));
-            }else{
-                       
-                       confirmAlert({
-                                title: 'Cant Remove Department ',                        // Title dialog
-                                message: 'Cant Remove Department '+self.state.department +' Because Employee Exit in that Department ',               // Message dialog
-                                confirmLabel: 'Ok',                           // Text button confirm
-                                                      
-                            
-                             })
-                       
-
-                       } ReactDOM.render(
+                        ReactDOM.render(
                           <Router >
                           <div>
                           <Route path="/" component={EmployeeMenuHeader}/>
-                            <Route path="/" component={RoleAddRemove}/>
-                                  
-                          <Route path="/" component={AddNewDepartment}/>
+                                         
+                          <Route path="/" component={RemoveDepartment}/>
                                                               
                             </div>
                           </Router>, document.getElementById('root'));
@@ -158,15 +104,9 @@ class RemoveDepartment extends Component{
 
                     },
                     error:function(data) {
-                        /* console.log('#####################error:################################'+data);
-                        */  confirmAlert({
-                            title: 'No Internet',                        // Title dialog
-                            message: 'Network Connection Problem',               // Message dialog
-                            confirmLabel: 'Ok',                           // Text button confirm
-                                                      
-                            
-                             });
-       
+                         console.log('#####################error:################################'+data);
+                         alert('Login Invalid'+ data);
+
                     },
                     });
   }
@@ -175,7 +115,7 @@ class RemoveDepartment extends Component{
 render(){
     return(
         
-<div class="container" style={{marginBottom:"10%"}}>
+<div class="container">
 <h2>Remove Department</h2>
 
 
@@ -184,21 +124,21 @@ render(){
  <form  style={{ paddingBottom: '20px',  position: 'inline-block'}}>
 
 
- <div className="col-xs-12 col-sm-12 col-lg-12">
- <label>
- Department*
- <select
- id="department" 
- className="form-control"
- onChange={this.handleUserInput}
+<div className="col-xs-12 col-sm-12 col-lg-12" style={{marginTop:"20px", marginBottom:"20px"}} >
+   <label>
+     Department Name* 
+      <input
+        type="text"
+        value={this.state.department}
+        required 
+        name="department"
+        onChange={(e)=>this.handleAddNew(e.target.value)}
+        className="form-control"
+        id="department"
+        placeholder="Enter Department Name"
+      />
+    </label>
 
- name="department" 
- style={{marginBottom:"15px"}}
- >
- </select>
- </label>
- 
- 
   
 <button 
 type="button"
@@ -207,9 +147,9 @@ type="button"
  marginLeft:"auto",
  marginRight: "auto",
  marginTop: "20px",
- marginBottom: "50px",
+ marginBottom: "25px",
  display:"block"}}
- disabled={!this.state.valid} 
+   
   className="btn btn-danger" 
   onClick={()=>this.RemoveDepartmentFunc()} 
  >Remove</button>

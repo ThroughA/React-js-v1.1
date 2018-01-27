@@ -17,6 +17,8 @@ import CryptoJS from 'crypto-js' ;
 import AttendanceDisplay from './AttendanceDisplay';
 import {  BrowserRouter as Router,Route, NavLink} from 'react-router-dom';
 import ReportMenuPage from './ReportMenuPage';
+import LeaveManagement from './LeaveManagement';
+
 
 
 

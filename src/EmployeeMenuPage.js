@@ -18,6 +18,8 @@ import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
 import CryptoJS from 'crypto-js' ;
 import TaskMapping from './TaskMapping';
+import LeaveManagement from './LeaveManagement';
+
 
 class EmployeeMenuPage extends Component{
 
@@ -364,45 +366,62 @@ TaskMappingFunc(){
 
 
 	 	 			
-	 	 }
+		  }
+
+LeaveManagementFunc(){
+
+	ReactDOM.render(
+		<Router>
+		  <div>
+			 <Route path="/" component={EmployeeMenuHeader}/>
+				 <Route  path="/" component={LeaveManagement}/>
+				  </div>
+							  </Router>,
+										document.getElementById('root'));
+										registerServiceWorker();
+										}
+		  
 
 
-
+ 
 
 render(){
 		return(
-
-	
-
-			<div className="container" id="menucol" style={{ backgroundColor: 'white' }}>
-
-                <div className="row" id="checkInOut">
-                    <div className="col-sm-6 col-xs-6" id="colcheckIn">
-                        <a  to="/" onClick={() => this.AttendanceFunc()} id="Attendancecolstyle" className="">Attendance</a>
-                    </div>
-                    <div className="col-sm-6 col-xs-6" id="colcheckIn">
-                        <a   to="/" id="Chartcolstyle" onClick={() => this.ChartFunc()} >Chart</a>
-                    </div>
-                </div>
-                <div className="row" id="checkInOut">
-                    <div className="col-sm-6 col-xs-6" id="colcheckIn">
-                        <a   to="/" onClick={() => this.MaintenanceFunc()} id="Maintenancecolstyle" className="">Maintenance</a>
-                    </div>
-                    <div className="col-sm-6 col-xs-6" id="colcheckIn">
-                        <a   to="/" id="Reportcolstyle" onClick={() => this.ReportFunc()} >Report</a>
-                    </div>
-                </div>
-                <div className="row" id="checkInOut">
-                    <div className="col-sm-6 col-xs-6" id="colcheckIn">
-                        <a    to="/"onClick={() => this.AttendanceRegulationsFunc()} id="AttendanceRegcolstyle" className="">Attendance Regularization</a>
-                    </div>
-                    <div className="col-sm-6 col-xs-6" id="colcheckIn">
-                        <a   to="/" id="TaskMappingcolstyle" onClick={() => this.TaskMappingFunc()} >Task Mapping</a>
-                    </div>
-                </div>
-
-                </div>
 			
+			<div className="container" id="menucol" style={{ backgroundColor: 'white', marginBottom: "10%"}}>
+
+                <div className="row" id="checkInOut">
+                    <div className="col-sm-6 col-xs-6" id="AttendancecolcheckIn">
+                        <a  to="/" onClick={() => this.AttendanceFunc()} id="Attendancecolstyle" className=""></a>
+                    </div>
+                    <div className="col-sm-6 col-xs-6" id="ChartcolcheckIn">
+                        <a   to="/" id="Chartcolstyle" onClick={() => this.ChartFunc()} ></a>
+                    </div>
+                </div>
+                <div className="row" id="checkInOut">
+                    <div className="col-sm-6 col-xs-6" id="MaintenancecolcheckIn">
+                        <a   to="/" onClick={() => this.MaintenanceFunc()} id="Maintenancecolstyle" className=""></a>
+                    </div>
+                    <div className="col-sm-6 col-xs-6" id="ReportcolcheckIn">
+                        <a   to="/" id="Reportcolstyle" onClick={() => this.ReportFunc()} ></a>
+                    </div>
+                </div>
+                <div className="row" id="checkInOut">
+                    <div className="col-sm-6 col-xs-6" id="AttendanceRegcolcheckIn">
+                        <a    to="/"onClick={() => this.AttendanceRegulationsFunc()} id="AttendanceRegcolstyle" className=""></a>
+                    </div>
+                    <div className="col-sm-6 col-xs-6" id="TaskMappingcolcheckIn">
+                        <a   to="/" id="TaskMappingcolstyle" onClick={() => this.TaskMappingFunc()} ></a>
+                    </div>
+                </div>
+				<div className="row" id="checkInOut">
+                    <div className="col-sm-6 col-xs-6" id="LeaveManagementcolcheckIn">
+                        <a    to="/" onClick={() => this.LeaveManagementFunc()} id="AttendanceRegcolstyle" className=""></a>
+                    </div>
+                   
+                </div>
+
+                </div>		
 		);
 	}
 
@@ -436,4 +455,36 @@ export default EmployeeMenuPage;
 									</div>
 						
 						</div>
-			</div>*/
+			</div>
+			
+
+			<div className="container" id="menucol" style={{ backgroundColor: 'white' }}>
+
+                <div className="row" id="checkInOut">
+                    <div className="col-sm-6 col-xs-6" id="colcheckIn">
+                        <a  to="/" onClick={() => this.AttendanceFunc()} id="Attendancecolstyle" className="">Attendance</a>
+                    </div>
+                    <div className="col-sm-6 col-xs-6" id="colcheckIn">
+                        <a   to="/" id="Chartcolstyle" onClick={() => this.ChartFunc()} >Chart</a>
+                    </div>
+                </div>
+                <div className="row" id="checkInOut">
+                    <div className="col-sm-6 col-xs-6" id="colcheckIn">
+                        <a   to="/" onClick={() => this.MaintenanceFunc()} id="Maintenancecolstyle" className="">Maintenance</a>
+                    </div>
+                    <div className="col-sm-6 col-xs-6" id="colcheckIn">
+                        <a   to="/" id="Reportcolstyle" onClick={() => this.ReportFunc()} >Report</a>
+                    </div>
+                </div>
+                <div className="row" id="checkInOut">
+                    <div className="col-sm-6 col-xs-6" id="colcheckIn">
+                        <a    to="/"onClick={() => this.AttendanceRegulationsFunc()} id="AttendanceRegcolstyle" className="">Attendance Regularization</a>
+                    </div>
+                    <div className="col-sm-6 col-xs-6" id="colcheckIn">
+                        <a   to="/" id="TaskMappingcolstyle" onClick={() => this.TaskMappingFunc()} >Task Mapping</a>
+                    </div>
+                </div>
+
+                </div>
+			
+			*/

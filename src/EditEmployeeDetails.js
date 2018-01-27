@@ -182,7 +182,7 @@ render(){
       
 
       
-  <div class="container">
+  <div class="container"  style={{marginBottom:"30%"}}>>
  <div style={{display:"inline-block"}}>
 <label for="firstName">
      <h2>EmployeeId :</h2> 
@@ -331,7 +331,7 @@ render(){
 
      </select>
 
-   <input type="submit" className="btn btn-info" onClick={()=> this.SaveBtn()}  style={{ marginBottom: '70px'}}value="SAVE" />
+   <input type="submit" className="btn btn-info" onClick={()=> this.SaveBtn()}  style={{ marginBottom: '30px',marginTop:"30px"}}value="SAVE" />
   </form>
 </div>
 

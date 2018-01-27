@@ -1,37 +1,37 @@
-import React,{Component} from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import './App.css';
 import $ from 'jquery';
 import './EmployeeMenuPage.css';
 import { FormErrors } from './FormErrors';
-import {  BrowserRouter as Router,Route, NavLink} from 'react-router-dom';
+import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
 import registerServiceWorker from './registerServiceWorker';
 import EmployeeMenuHeader from './EmployeeMenuHeader'
 import Maintenance from './Maintenance'
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
-import CryptoJS from 'crypto-js' ;
+import CryptoJS from 'crypto-js';
 
-class AddEmployee extends Component{
+class AddEmployee extends Component {
 
-	constructor() {
+    constructor() {
         super()
         this.state = {
 
             firstName: '',
-          	lastName: '',
+            lastName: '',
             proofType: '',
-            proofNo:'',
+            proofNo: '',
             dob: '',
             emailId: '',
             mobileNo: '',
             address: '',
             employeeType: '',
             role: '',
-			department: '',
-			companyId:'',
+            department: '',
+            companyId: '',
 
-       formErrors: {
+            formErrors: {
                 firstName: '',
                 lastName: '',
                 proofType: '',
@@ -58,18 +58,18 @@ class AddEmployee extends Component{
             role: false,
             department: false,
         };
-            	      
-			    }
 
-				handleUserInput = (e) => {
-			    const name = e.target.name;
-			    const value = e.target.value;
-			    this.setState({[name]: value},
-			                  () => { this.validateField(name, value) });
-			}
+    }
+
+    handleUserInput = (e) => {
+        const name = e.target.name;
+        const value = e.target.value;
+        this.setState({ [name]: value },
+            () => { this.validateField(name, value) });
+    }
 
 
-			    validateField(fieldName, value) {
+    validateField(fieldName, value) {
         let fieldValidationErrors = this.state.formErrors;
         let firstNameValid = this.state.firstNameValid;
         let lastNameValid = this.state.lastNameValid;
@@ -161,303 +161,302 @@ class AddEmployee extends Component{
     }
 
 
-AddEmployeeFunc(){
-		
-		/*alert(this.state.firstName);*/
-    
-		var companyId=CryptoJS.AES.decrypt(localStorage.getItem('CompanyId'),"shinchanbaby").toString(CryptoJS.enc.Utf8)
-		this.state.companyId=companyId;
-		this.setState({
-			companyId:companyId,
-		});
-				 var self=this;
-						 /*alert(JSON.stringify(this.state);*/
-						 $.ajax({
-						 				type: 'POST',
-						 				data:JSON.stringify({
-      firstName: this.state.firstName,
-            lastName: this.state.lastName,
-            proofType: this.state.proofType,
-            proofNo:this.state.proofNo,
-            dob: this.state.dob,
-            emailId: this.state.emailId,
-            mobileNo: this.state.mobileNo,
-            address: this.state.address,
-            employeeType: this.state.employeeType,
-            role: this.state.role,
-      department: this.state.department,
-      companyId:this.state.companyId,
-              }),
-						 				url: "http://13.127.39.136:8080/EmployeeAttendenceAPI/employee/addemployee",
-						 				contentType: "application/json",
-						 				dataType: 'json',
-						 				async:false,
-						 				success: function(data,textStatus,jqXHR)
-						       			 {
+    AddEmployeeFunc() {
+
+        /*alert(this.state.firstName);*/
+
+        var companyId = CryptoJS.AES.decrypt(localStorage.getItem('CompanyId'), "shinchanbaby").toString(CryptoJS.enc.Utf8)
+        this.state.companyId = companyId;
+        this.setState({
+            companyId: companyId,
+        });
+        var self = this;
+        /*alert(JSON.stringify(this.state);*/
+        $.ajax({
+            type: 'POST',
+            data: JSON.stringify({
+                firstName: this.state.firstName,
+                lastName: this.state.lastName,
+                proofType: this.state.proofType,
+                proofNo: this.state.proofNo,
+                dob: this.state.dob,
+                emailId: this.state.emailId,
+                mobileNo: this.state.mobileNo,
+                address: this.state.address,
+                employeeType: this.state.employeeType,
+                role: this.state.role,
+                department: this.state.department,
+                companyId: this.state.companyId,
+            }),
+            url: "http://13.127.39.136:8080/EmployeeAttendenceAPI/employee/addemployee",
+            contentType: "application/json",
+            dataType: 'json',
+            async: false,
+            success: function (data, textStatus, jqXHR) {
 												/*console.log(data);
-                        */if(data.employeeId=="EMAIL"){
-                          confirmAlert({
-                            title: 'Cant Add Employee',                        // Title dialog
-                            message: data.emailId+' Already Exits',               // Message dialog
-                            confirmLabel: 'Ok',                           // Text button confirm
-                                                      
-                            
-                         })
+                        */if (data.employeeId == "EMAIL") {
+                    confirmAlert({
+                        title: 'Cant Add Employee',                        // Title dialog
+                        message: data.emailId + ' Already Exits',               // Message dialog
+                        confirmLabel: 'Ok',                           // Text button confirm
 
-                        } else if(data.employeeId=="MOBILE"){
-                            confirmAlert({
-                            title: 'Cant Add Employee',                        // Title dialog
-                            message: data.mobileNo+' Already Exits',               // Message dialog
-                            confirmLabel: 'Ok',                           // Text button confirm
-                                                      
-                            
-                             })
-                                    
-                        
-                      
-                        }else{
 
-												var emp=JSON.parse(CryptoJS.AES.decrypt(localStorage.getItem('EmpList'),"shinchanbaby").toString(CryptoJS.enc.Utf8));
-                        emp.push({employeeId:data.employeeId});
+                    })
+
+                } else if (data.employeeId == "MOBILE") {
+                    confirmAlert({
+                        title: 'Cant Add Employee',                        // Title dialog
+                        message: data.mobileNo + ' Already Exits',               // Message dialog
+                        confirmLabel: 'Ok',                           // Text button confirm
+
+
+                    })
+
+
+
+                } else {
+
+                    var emp = JSON.parse(CryptoJS.AES.decrypt(localStorage.getItem('EmpList'), "shinchanbaby").toString(CryptoJS.enc.Utf8));
+                    emp.push({ employeeId: data.employeeId });
 												/*console.log(emp);
 												console.log(emp);
                         localStorage.setItem('EmpList', JSON.stringify(emp));
              
-												*/localStorage.setItem('EmpList', CryptoJS.AES.encrypt(JSON.stringify(emp),"shinchanbaby"));
-												
-											
-                        
-						 					 confirmAlert({
-											      title: 'Success',                        // Title dialog
-											      message: 'Successfully Added Employee And Your Employee Id is '+data.employeeId,               // Message dialog
-											      confirmLabel: 'Ok',                           // Text button confirm
-											                                
-											      
-											       });
-												ReactDOM.render(
-													<Router >
-													<div>
-													<Route path="/" component={EmployeeMenuHeader}/>
-																				 
-													<Route path="/" component={Maintenance}/>
-																								              
-												    </div>
-													</Router>, document.getElementById('root'));
-											}									
+												*/localStorage.setItem('EmpList', CryptoJS.AES.encrypt(JSON.stringify(emp), "shinchanbaby"));
 
-						 				},
-						 			  error:function(data) {
+
+
+                    confirmAlert({
+                        title: 'Success',                        // Title dialog
+                        message: 'Successfully Added Employee And Your Employee Id is ' + data.employeeId,               // Message dialog
+                        confirmLabel: 'Ok',                           // Text button confirm
+
+
+                    });
+                    ReactDOM.render(
+                        <Router >
+                            <div>
+                                <Route path="/" component={EmployeeMenuHeader} />
+
+                                <Route path="/" component={Maintenance} />
+
+                            </div>
+                        </Router>, document.getElementById('root'));
+                }
+
+            },
+            error: function (data) {
 						             /*console.log('#####################error:################################'+data);
 						             */ confirmAlert({
-                            title: 'No Internet',                        // Title dialog
-                            message: 'Network Connection Problem',               // Message dialog
-                            confirmLabel: 'Ok',                           // Text button confirm
-                                                      
-                            
-                             });
-                      
-						  		  },
-						 				});
-	}
+                    title: 'No Internet',                        // Title dialog
+                    message: 'Network Connection Problem',               // Message dialog
+                    confirmLabel: 'Ok',                           // Text button confirm
 
-  componentDidMount() {
-  /*for drop down
- alert('componentDidMount');
-*/
-var department=JSON.parse(CryptoJS.AES.decrypt(localStorage.getItem('Departments'),"shinchanbaby").toString(CryptoJS.enc.Utf8));
+
+                });
+
+            },
+        });
+    }
+
+    componentDidMount() {
+        /*for drop down
+       alert('componentDidMount');
+      */
+        var department = JSON.parse(CryptoJS.AES.decrypt(localStorage.getItem('Departments'), "shinchanbaby").toString(CryptoJS.enc.Utf8));
 /*console.log(department);
 */var dept;
-dept += '<option value="" disabled selected hidden>Select a department</option>';
-  $.each(department, function (i, item) {
-  
-    dept += '<option value="' + item.department + '">'+item.department+ '</option>'
-    
-  });
-$("#department").append(dept);
+        dept += '<option value="" disabled selected hidden>Select a department</option>';
+        $.each(department, function (i, item) {
 
-var Role=JSON.parse(CryptoJS.AES.decrypt(localStorage.getItem('Roles'),"shinchanbaby").toString(CryptoJS.enc.Utf8));
+            dept += '<option value="' + item.department + '">' + item.department + '</option>'
+
+        });
+        $("#department").append(dept);
+
+        var Role = JSON.parse(CryptoJS.AES.decrypt(localStorage.getItem('Roles'), "shinchanbaby").toString(CryptoJS.enc.Utf8));
 /*console.log(Role);
 */var role;
-role += '<option value="" disabled selected hidden >Select a role</option>';
-  $.each(Role, function (i, item) {
-  
-    role += '<option value="' + item.role + '">'+item.role+ '</option>'
-    
-  });
-$("#role").append(role);
+        role += '<option value="" disabled selected hidden >Select a role</option>';
+        $.each(Role, function (i, item) {
 
-}
-	
+            role += '<option value="' + item.role + '">' + item.role + '</option>'
 
-render(){
-		return(
-			
+        });
+        $("#role").append(role);
 
-			
-	<div class="container">
+    }
 
-  <div className="panel panel-default">
+
+    render() {
+        return (
+
+
+
+            <div class="container" style={{ marginBottom: "30%" }}>
+
+                <div className="panel panel-default">
                     <FormErrors formErrors={this.state.formErrors} />
                 </div>
 
-  <form >
-  
-    <label for="firstName">
-    	First Name*
-    		</label>
-         <div className={`form-group ${this.errorClass(this.state.formErrors.firstName)}`}>
-    <input type="text"
-    onChange={this.handleUserInput}
-       id="firstName"
-     	name="firstName"
-     	 placeholder="Your name.."
-     	  required />
-        </div>
+                <form >
 
-		    <label for="lastName">
-		    	Last Name*
+                    <label for="firstName">
+                        First Name*
+    		</label>
+                    <div className={`form-group ${this.errorClass(this.state.formErrors.firstName)}`}>
+                        <input type="text"
+                            onChange={this.handleUserInput}
+                            id="firstName"
+                            name="firstName"
+                            placeholder="Your name.."
+                            required />
+                    </div>
+
+                    <label for="lastName">
+                        Last Name*
 		    		</label>
 
-            <div className={`form-group ${this.errorClass(this.state.formErrors.lastName)}`}>
+                    <div className={`form-group ${this.errorClass(this.state.formErrors.lastName)}`}>
 
-		    <input type="text" 
-		    onChange={this.handleUserInput}
-		      id="lastName" 
-		      	name="lastName" 
-		      		placeholder="Your last name.." 
-		      			required />
-                 </div>
-     
-    <label for="proofType">
-    	Employee Proof*
+                        <input type="text"
+                            onChange={this.handleUserInput}
+                            id="lastName"
+                            name="lastName"
+                            placeholder="Your last name.."
+                            required />
+                    </div>
+
+                    <label for="proofType">
+                        Employee Proof*
     		</label>
-        <div className={`form-group ${this.errorClass(this.state.formErrors.proofType)}`}>
-    <select name="proofType"
-      	id="proofType"
-    	onChange={this.handleUserInput}
-      		required>
-     <option value="" disabled selected hidden>Select your particular proof</option>
-      <option value="VoterID">VoterID</option>
-      <option value="License">LicenceNo</option>
-      <option value="PanCard">PancardNo</option>
-      <option value="Aadhar">AadharNo</option>
-      <option value="Passport">PassportNo</option>
-      <option value="RationCard">RationCardNo</option>
-    </select>
-    <input type="text"
-    	onChange={this.handleUserInput}
-     		id="proofNo"
-     			 name="proofNo"
-     			  	placeholder="Your Proof No.." 
-     			  		required />
+                    <div className={`form-group ${this.errorClass(this.state.formErrors.proofType)}`}>
+                        <select name="proofType"
+                            id="proofType"
+                            onChange={this.handleUserInput}
+                            required>
+                            <option value="" disabled selected hidden>Select your particular proof</option>
+                            <option value="VoterID">VoterID</option>
+                            <option value="License">LicenceNo</option>
+                            <option value="PanCard">PancardNo</option>
+                            <option value="Aadhar">AadharNo</option>
+                            <option value="Passport">PassportNo</option>
+                            <option value="RationCard">RationCardNo</option>
+                        </select>
+                        <input type="text"
+                            onChange={this.handleUserInput}
+                            id="proofNo"
+                            name="proofNo"
+                            placeholder="Your Proof No.."
+                            required />
 
 
-</div>
+                    </div>
 
-    <label for="dob">
-    	DOB*
+                    <label for="dob">
+                        DOB*
     		</label>
-        <div className={`form-group ${this.errorClass(this.state.formErrors.dob)}`}>
-    <input type="date"
-    onChange={this.handleUserInput} 
-    	 id="dob"
-    	 	name="dob" 
-    	 		placeholder="Your DOB.."
-    	 			 required />
-<br />
+                    <div className={`form-group ${this.errorClass(this.state.formErrors.dob)}`}>
+                        <input type="date"
+                            onChange={this.handleUserInput}
+                            id="dob"
+                            name="dob"
+                            placeholder="Your DOB.."
+                            required />
+                        <br />
 
-</div>
+                    </div>
 
-    <label for="emailId">
-    	Email ID*
+                    <label for="emailId">
+                        Email ID*
     		</label><div className={`form-group ${this.errorClass(this.state.formErrors.emailId)}`}>
 
-    <input type="email"
-    	onChange={this.handleUserInput}
-    		 id="emailId"
-    		 	 name="emailId" 
-    		 	 	maxlength="50"
-    		 	 		 placeholder="Your EmailID.." required />
+                        <input type="email"
+                            onChange={this.handleUserInput}
+                            id="emailId"
+                            name="emailId"
+                            maxlength="50"
+                            placeholder="Your EmailID.." required />
 
-</div>
+                    </div>
 
-    <label for="mobileNo">
-    	Mobile No*
+                    <label for="mobileNo">
+                        Mobile No*
     		</label>
 
-        <div className={`form-group ${this.errorClass(this.state.formErrors.mobileNo)}`}>
+                    <div className={`form-group ${this.errorClass(this.state.formErrors.mobileNo)}`}>
 
-    <input type="number"
-    onChange={this.handleUserInput} 
-     id="mobileNo"
-      name="mobileNo" 
-      	maxlength="10"
-      	  
-      	 	placeholder="Your Mobile No.."
-          required />
-</div>
-    <label for="address">
-    	Address*
+                        <input type="number"
+                            onChange={this.handleUserInput}
+                            id="mobileNo"
+                            name="mobileNo"
+                            maxlength="10"
+
+                            placeholder="Your Mobile No.."
+                            required />
+                    </div>
+                    <label for="address">
+                        Address*
     		</label>
 
-        <div className={`form-group ${this.errorClass(this.state.formErrors.address)}`}>
-    <textarea id="address" 
-    	onChange={this.handleUserInput}	
-    		name="address"
-    			 maxlength="250" 
-    			 	placeholder="Your address.." required style={{height:'200px'}}> </textarea>
-    </div>
-    <label for="employeeType">
-    	Employee Type*
+                    <div className={`form-group ${this.errorClass(this.state.formErrors.address)}`}>
+                        <textarea id="address"
+                            onChange={this.handleUserInput}
+                            name="address"
+                            maxlength="250"
+                            placeholder="Your address.." required style={{ height: '200px' }}> </textarea>
+                    </div>
+                    <label for="employeeType">
+                        Employee Type*
     		</label>
-        <div className={`form-group ${this.errorClass(this.state.formErrors.employeeType)}`}>
-     <select name="employeeType" 
-     	id="employeeType"
-     	onChange={this.handleUserInput}
-     	  required>
-      <option value="" disabled selected hidden>Select your Type</option>
-      <option value="Permanent">Permanent</option>
-      <option value="Temporary">Temporary</option>
-      <option value="Contract">Contract</option>
-    </select>
- </div>
-   <label for="role">
-   		Role*
+                    <div className={`form-group ${this.errorClass(this.state.formErrors.employeeType)}`}>
+                        <select name="employeeType"
+                            id="employeeType"
+                            onChange={this.handleUserInput}
+                            required>
+                            <option value="" disabled selected hidden>Select your Type</option>
+                            <option value="Permanent">Permanent</option>
+                            <option value="Temporary">Temporary</option>
+                            <option value="Contract">Contract</option>
+                        </select>
+                    </div>
+                    <label for="role">
+                        Role*
    			</label>
-        <div className={`form-group ${this.errorClass(this.state.formErrors.role)}`}>
-     <select
-      name="role"
-     	id="role"
-      onChange={this.handleUserInput}
-        required>
-   </select>
-</div>
+                    <div className={`form-group ${this.errorClass(this.state.formErrors.role)}`}>
+                        <select
+                            name="role"
+                            id="role"
+                            onChange={this.handleUserInput}
+                            required>
+                        </select>
+                    </div>
 
-   <label for="department">
-   		Department*
+                    <label for="department">
+                        Department*
    			</label>
-        <div className={`form-group ${this.errorClass(this.state.formErrors.department)}`}>
-    <select
-     name="department"
-    	id="department" 
-    	onChange={this.handleUserInput}
-    	 required>
-      
-    </select>
-</div>
+                    <div className={`form-group ${this.errorClass(this.state.formErrors.department)}`}>
+                        <select
+                            name="department"
+                            id="department"
+                            onChange={this.handleUserInput}
+                            required>
 
-  <button type="button" disabled={!this.state.formValid} onClick={() => this.AddEmployeeFunc()} className="btn btn-primary" style={{ marginLeft: "20px", marginLeft: "auto", marginRight: "auto", marginBottom: "45px", marginTop: "20px", display: "block" }}>Add</button>
-   </form>
-</div>
+                        </select>
+                    </div>
+
+                    <button type="button" disabled={!this.state.formValid} onClick={() => this.AddEmployeeFunc()} className="btn btn-primary" style={{ marginLeft: "20px", marginLeft: "auto", marginRight: "auto", marginBottom: "45px", marginTop: "20px", display: "block" }}>Add</button>
+                </form>
+            </div>
 
 
- 
- 
-	
-				
-			
-		);
-	}
+
+
+
+
+
+        );
+    }
 
 }
 

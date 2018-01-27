@@ -212,7 +212,7 @@ render(){
 			
 
 			
-	<div class="container" style={{marginBottom:"10%"}}>
+	<div class="container" style={{marginBottom:"30%"}}>
 	<div className="jumbotron">
 	<h3>Remove Employee</h3>
 	<div className="col-xs-12 col-sm-12 col-lg-12" style={{marginTop:"20px", marginBottom:"20px"}} >
@@ -230,7 +230,7 @@ render(){
   </label>
   
   </div>
- <button type="button" disabled={!this.state.valid} onClick={()=> this.RemoveBtn()}className="btn btn-primary" style={{marginLeft:"20px", marginBottom:"55px", marginLeft:"auto",marginRight: "auto",marginTop: "20px",display:"block"}}>Remove</button>
+ <button type="button" disabled={!this.state.valid} onClick={()=> this.RemoveBtn()}className="btn btn-primary" style={{ marginBottom:"0px", marginLeft:"auto",marginRight: "auto",marginTop: "0px",display:"block"}}>Remove</button>
 </div>
 	</div>
 				

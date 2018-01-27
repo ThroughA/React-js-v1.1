@@ -134,7 +134,7 @@ render(){
 			
 
 			
-	<div class="container">
+	<div class="container"  style={{marginBottom:"30%"}}>
 	
   
   	<div className="jumbotron">

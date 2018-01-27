@@ -178,7 +178,7 @@ MonthlyAttendanceFunc(){
 render(){
 		return(
 
-			<div className="container" id="menucol"  style={{paddingTop:"10%",backgroundColor:"white"}}>
+			<div className="container" id="menucol"  style={{paddingTop:"25%",backgroundColor:"white"}}>
   
  <div className="col-sm-12 col-xs-12 col-lg-12" style={{marginBottom:"10%"}}>
 		
@@ -192,7 +192,7 @@ render(){
 					<a to="/Chart" onClick={()=>this.MonthlyAttendanceFunc()} id="Monthlycolstyle"  >Monthly</a>
 							</div>
 		</div>
-		<div className="row"  id="checkInOut"style={{backgroundColor:'white',marginBottom: "30%"}}>
+		<div className="row"  id="checkInOut"style={{backgroundColor:'white',marginBottom: "10%"}}>
  
 						<div className="col-xs-6 " id="colcheckIn">
 								<a to="/MaintenanceVoid" onClick={()=>this.PeriodAttendanceFunc()} id="Periodcolstyle">Period</a>

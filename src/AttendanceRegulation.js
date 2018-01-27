@@ -255,7 +255,7 @@ render(){
 
 
 
-<div className="container">
+<div className="container" style={{ marginBottom: '30%'}}>
       <div class ="jumbotron">
       <h3>Attendance Regularization</h3>
 

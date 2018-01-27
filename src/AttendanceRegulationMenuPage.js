@@ -45,10 +45,12 @@ AttendanceFunc(){
 
     });
     /*alert(this.state.date);
-    */var companyId = CryptoJS.AES.decrypt(localStorage.getItem('CompanyId'), "shinchanbaby").toString(CryptoJS.enc.Utf8)
+    */
+    var companyId = CryptoJS.AES.decrypt(localStorage.getItem('CompanyId'), "shinchanbaby").toString(CryptoJS.enc.Utf8);
     this.state.companyId = companyId;
     this.setState({
       companyId: companyId,
+    
     });
 
     $.ajax({
@@ -56,7 +58,7 @@ AttendanceFunc(){
       data: JSON.stringify({
         date: this.state.date,
         companyId: this.state.companyId,
-
+        
       }),
       url: "http://13.127.39.136:8080/EmployeeAttendenceAPI/employee/attendance",
       contentType: "application/json",
@@ -109,8 +111,8 @@ AttendanceRegulationFunc(){
 											registerServiceWorker();
 										}
 	componentDidMount() {
-
-       this.AttendanceFunc();
+      var self=this;
+      self.AttendanceFunc();
     }
 
 

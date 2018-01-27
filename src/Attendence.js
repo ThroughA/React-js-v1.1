@@ -35,8 +35,8 @@ class Attendence extends Component {
       date: '',
       checkOutTime: '',
       companyId: '',
-       
-      
+
+
 
 
 
@@ -72,11 +72,11 @@ class Attendence extends Component {
 
     var today = new Date();
 
-    var currenttime = today.toLocaleTimeString();
+    var currenttime = today.toLocaleTimeString([],{hour12:false});
     today = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
     this.state.checkInTime = currenttime;
     this.state.date = today;
-
+ 
 
 
     this.setState({
@@ -85,6 +85,7 @@ class Attendence extends Component {
       date: today,
 
     });
+    
    /* //alert("checkIn");
     //alert(this.state.date);
     //alert(this.state.checkInTime);
@@ -140,33 +141,33 @@ class Attendence extends Component {
 
             })
           }
-          else{
+          else {
 
-             confirmAlert({
+            confirmAlert({
               title: 'Checked In',                        // Title dialog
-              message: 'Successfully Checked In  '+data.employeeId ,               // Message dialog
+              message: 'Successfully Checked In  ' + data.employeeId,               // Message dialog
               confirmLabel: 'Ok',                           // Text button confirm
 
 
             })
-          
+
           }
-          self.state.employeeId='';
+          self.state.employeeId = '';
           self.setState({
-            employeeId:'',
+            employeeId: '',
           })
 
         },
         error: function (data) {
           /*console.log('#####################error:################################' + data);
           */confirmAlert({
-                            title: 'No Internet',                        // Title dialog
-                            message: 'Network Connection Problem',               // Message dialog
-                            confirmLabel: 'Ok',                           // Text button confirm
-                                                      
-                            
-                             });
-                      
+            title: 'No Internet',                        // Title dialog
+            message: 'Network Connection Problem',               // Message dialog
+            confirmLabel: 'Ok',                           // Text button confirm
+
+
+          });
+
         },
 
 
@@ -209,8 +210,8 @@ class Attendence extends Component {
 
 
   attendance() {
-   /* alert("ATTENDANCE");
-*/
+    /* alert("ATTENDANCE");
+ */
     var today = new Date();
     today = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
     this.state.date = today;
@@ -239,9 +240,9 @@ class Attendence extends Component {
       async: false,
 
       success: function (data, textStatus, jqXHR) {
-       /* console.log(data);
-        alert(data);
-*/
+        /* console.log(data);
+         alert(data);
+ */
         ReactDOM.render(
           <Router>
             <div>
@@ -257,13 +258,13 @@ class Attendence extends Component {
       error: function (data) {
         /*console.log('#####################error:################################' + data);
         */ confirmAlert({
-                            title: 'No Internet',                        // Title dialog
-                            message: 'Network Connection Problem',               // Message dialog
-                            confirmLabel: 'Ok',                           // Text button confirm
-                                                      
-                            
-                             });
-       
+          title: 'No Internet',                        // Title dialog
+          message: 'Network Connection Problem',               // Message dialog
+          confirmLabel: 'Ok',                           // Text button confirm
+
+
+        });
+
       },
 
     });
@@ -300,9 +301,9 @@ class Attendence extends Component {
           var keyValStore = tx.objectStore('checkIn');
           var count = keyValStore.openCursor().then(function cursorIterate(cursor) {
             if (!cursor) return;
-           /* console.log('cursor value', cursor.key);
-            console.log('online');
-*/
+            /* console.log('cursor value', cursor.key);
+             console.log('online');
+ */
             var companyId = CryptoJS.AES.decrypt(localStorage.getItem('CompanyId'), "shinchanbaby").toString(CryptoJS.enc.Utf8)
             this.state.companyId = companyId;
             this.setState({
@@ -339,17 +340,17 @@ class Attendence extends Component {
                   })
                 }
 
- else{
+                else {
 
-             confirmAlert({
-              title: 'Checked In',                        // Title dialog
-              message: 'Successfully Checked In  '+data.employeeId ,               // Message dialog
-              confirmLabel: 'Ok',                           // Text button confirm
+                  confirmAlert({
+                    title: 'Checked In',                        // Title dialog
+                    message: 'Successfully Checked In  ' + data.employeeId,               // Message dialog
+                    confirmLabel: 'Ok',                           // Text button confirm
 
 
-            })
-          
-          }
+                  })
+
+                }
 
 
 
@@ -357,13 +358,13 @@ class Attendence extends Component {
               error: function (data) {
                /* console.log('#####################error:################################' + data);
                */  confirmAlert({
-                            title: 'No Internet',                        // Title dialog
-                            message: 'Network Connection Problem',               // Message dialog
-                            confirmLabel: 'Ok',                           // Text button confirm
-                                                      
-                            
-                             });
-       
+                  title: 'No Internet',                        // Title dialog
+                  message: 'Network Connection Problem',               // Message dialog
+                  confirmLabel: 'Ok',                           // Text button confirm
+
+
+                });
+
               },
 
 
@@ -426,33 +427,33 @@ class Attendence extends Component {
 
                   })
                 }
- else{
+                else {
 
-             confirmAlert({
-              title: 'Checked Out',                        // Title dialog
-              message: 'Successfully Checked Out  '+data.employeeId ,               // Message dialog
-              confirmLabel: 'Ok',                           // Text button confirm
+                  confirmAlert({
+                    title: 'Checked Out',                        // Title dialog
+                    message: 'Successfully Checked Out  ' + data.employeeId,               // Message dialog
+                    confirmLabel: 'Ok',                           // Text button confirm
 
 
-            })
-          
+                  })
 
-          }
 
-        
+                }
+
+
 
 
               },
               error: function (data) {
                 /*console.log('#####################error:################################' + data);
                 */confirmAlert({
-                            title: 'No Internet',                        // Title dialog
-                            message: 'Network Connection Problem',               // Message dialog
-                            confirmLabel: 'Ok',                           // Text button confirm
-                                                      
-                            
-                             });
-       
+                  title: 'No Internet',                        // Title dialog
+                  message: 'Network Connection Problem',               // Message dialog
+                  confirmLabel: 'Ok',                           // Text button confirm
+
+
+                });
+
               },
 
 
@@ -489,7 +490,7 @@ class Attendence extends Component {
   CheckOutConfirm() {
     var today = new Date();
 
-    var currenttime = today.toLocaleTimeString();
+    var currenttime = today.toLocaleTimeString([],{hour12:false});
     today = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
     this.state.checkOutTime = currenttime;
     this.state.date = today;
@@ -503,7 +504,7 @@ class Attendence extends Component {
     /*alert(this.state.date);
     alert(this.state.checkOutTime);
 */
-var self=this;
+    var self = this;
     if (navigator.onLine) {
       var companyId = CryptoJS.AES.decrypt(localStorage.getItem('CompanyId'), "shinchanbaby").toString(CryptoJS.enc.Utf8)
       this.state.companyId = companyId;
@@ -553,35 +554,35 @@ var self=this;
 
 
             })
-          }else{
-           confirmAlert({
+          } else {
+            confirmAlert({
               title: 'Checked Out',                        // Title dialog
-              message: ' Successfully Checked Out  '+  data.employeeId ,               // Message dialog
+              message: ' Successfully Checked Out  ' + data.employeeId,               // Message dialog
               confirmLabel: 'Ok',                           // Text button confirm
 
 
             })
-          
-          
-}
 
-self.state.employeeId='';
+
+          }
+
+          self.state.employeeId = '';
           self.setState({
-            employeeId:'',
+            employeeId: '',
           })
 
-              
+
         },
         error: function (data) {
          /* console.log('#####################error:################################' + data);
          */ confirmAlert({
-                            title: 'No Internet',                        // Title dialog
-                            message: 'Network Connection Problem',               // Message dialog
-                            confirmLabel: 'Ok',                           // Text button confirm
-                                                      
-                            
-                             });
-                      
+            title: 'No Internet',                        // Title dialog
+            message: 'Network Connection Problem',               // Message dialog
+            confirmLabel: 'Ok',                           // Text button confirm
+
+
+          });
+
         },
 
 
@@ -637,10 +638,10 @@ self.state.employeeId='';
 
         </div>
       </Router>, document.getElementById('root'));
-    this.state.employeeId='';
-          this.setState({
-            employeeId:'',
-          })
+    this.state.employeeId = '';
+    this.setState({
+      employeeId: '',
+    })
 
 
   }
@@ -648,25 +649,132 @@ self.state.employeeId='';
   render() {
     return (
 
-      <div className="container ">
+      <div className="container " style={{ 
+        marginBottom: "20%",
+
+        }}>
+        <div class="form-group"
+          style={{
+            textAlign: "center",
+            display: "block"
+          }}>
+          <label htmlFor="employeeId"
+          >Employee ID:</label>
+          <input
+            type="number"
+            autoFocus
+            value={this.state.employeeId}
+            required
+            name="employeeId"
+            onChange={this.handleUserInput}
+            className="form-control"
+            id="employeeId"
+            placeholder="Enter EmployeeId"
+           
+            style={{
+              width: "50%",
+              height: "50px",
+              display: "inline-block",
+              marginLeft: "10px"
+            }}
+          />
+        </div>
+
+        {/*   <div className="row" id="checkInOut" >
+          <div className="col-sm-6 col-xs-6" >
+            <label class="control-label"
+              htmlFor="employeeId"
+              id="employeeidlabel"
+              style={{ paddingTop: "23px" }}
+            >Employee ID:</label>
+          </div>
+          <div className="col-sm-6 col-xs-6"
+            style={{ paddingLeft: " 0px" }}>
+            <input
+              type="number"
+              autoFocus
+              value={this.state.employeeId}
+              required
+              name="employeeId"
+              onChange={this.handleUserInput}
+              className="form-control"
+              id="employeeId"
+              placeholder="Enter EmployeeId"
+              style={{
+                float: "left",
+                width: "77%",
+                height: "50px"
+              }}
+            />
+
+          </div>
+        </div> */}
+        {/* 
+        <div class="input-group">
+          <span class="input-group-addon" id="basic-addon3">Employee ID:</span>
+          <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" />
+        </div>
+
+        <div className="row " id="checkInOut">
+          <label htmlFor="employeeId" class="col-xs-6 col-sm-6 form-group"
+            id="employeeidlabel"
+            style={{
+
+
+              paddingTop: " 27px",
+              fontSize: "18px",
+              fontSize: "18px",
+              fontWeight: "600",
+              paddingLeft: "9%",
+
+
+              /*  height: "20px",
+               width:" 120px",
+               marginTop: "10px",
+               marginLeft: "10px",
+               textAlign:" right",
+               marginRight: "15px",
+               float:"left" 
+
+            }}>Employee ID:</label>
+
+          < input type="number"
+            autoFocus
+            value={this.state.employeeId}
+            required name="employeeId"
+            onChange={this.handleUserInput}
+            className="form-control"
+            id="employeeId"
+            placeholder="Enter EmployeeId" class="col-xs-6 col-sm-6  form-group"
+            style={{
+              marginLeft: "auto",
+              marginRight: "auto",
+              height: "50px",
+              width: "130px",
+              border: "1px solid #000",
+              marginTop: "10px"
+            }} />
+        </div>
 
 
         <div className="form-group">
-          <label htmlFor="employeeId"
-          id="employeeidlabel"
-          style={{
-            //fontFamily:" Georgia", "Times New Roman", Times, serif,
-          fontSize: "18px",
-          
-          height: "20px",
-          width:" 120px",
-          marginTop: "10px",
-          marginLeft: "10px",
-          textAlign:" right",
-          marginRight: "15px",
-          float:"left"}}>Employee ID:</label>
 
-          <input type="text"
+          <label htmlFor="employeeId"
+            id="employeeidlabel"
+            style={{
+              //fontFamily:" Georgia", "Times New Roman", Times, serif,
+              fontSize: "18px",
+
+              height: "20px",
+              width: " 120px",
+              marginTop: "10px",
+              marginLeft: "10px",
+              textAlign: " right",
+              marginRight: "15px",
+              float: "left"
+            }}>Employee ID:</label>
+
+          <input type="number"
             autoFocus
             value={this.state.employeeId}
             required name="employeeId"
@@ -675,31 +783,35 @@ self.state.employeeId='';
             id="employeeId"
             placeholder="Enter EmployeeId"
             style={{
-              marginLeft:"auto" ,
+              marginLeft: "auto",
               marginRight: "auto",
               height: "50px",
               width: "130px",
               border: "1px solid #000",
-              marginTop: "10px"}} />
+              marginTop: "10px"
+            }} />
 
-       </div>
-
-        <div className="row" id="checkInOut">
-                    <div className="col-sm-6 col-xs-6" id="colcheckIn">
-                        <a to="/" onClick={() => this.checkIn()} id="checkIn" className="" >&nbsp; &nbsp;</a>
-                    </div>
-                    <div className="col-sm-6 col-xs-6" id="colcheckIn">
-                        <a to="/" id="checkOut" onClick={() => this.checkOut()} >&nbsp; &nbsp;</a>
-                    </div>
-                </div>
-
+        </div> 
         
-
-  
-        <div>
+          <div>
           <table class="table" id="tableHeadings">
           </table>
         </div>
+        */}
+
+        <div className="row" id="checkInOut" >
+          <div className="col-sm-6 col-xs-6" id="colcheckIn">
+            <a to="/" onClick={() => this.checkIn()} id="checkIn" className="" ></a>
+          </div>
+          <div className="col-sm-6 col-xs-6" id="colcheckIn">
+            <a to="/" id="checkOut" onClick={() => this.checkOut()} ></a>
+          </div>
+        </div>
+
+
+
+
+
 
 
       </div>

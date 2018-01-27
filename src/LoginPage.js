@@ -133,9 +133,10 @@ login(){
 		ReactDOM.render(<LoginPage / > , document.getElementById("root"));
  
  }else {
-             var key="shinchanbaby";
+			 var key="shinchanbaby";
+			 console.log("data",data);
             localStorage.setItem('isLoggedIn', CryptoJS.AES.encrypt("true".toString(),key));
-            
+           console.log("kkkk",data.employeeDepartmentlist);
             localStorage.setItem('Departments', CryptoJS.AES.encrypt(JSON.stringify(data.employeeDepartmentlist),key));
             localStorage.setItem('Roles', CryptoJS.AES.encrypt(JSON.stringify(data.employeeRolelist),key));
             localStorage.setItem('Permissions', CryptoJS.AES.encrypt(JSON.stringify(data.employeePermisionlist),key));
@@ -146,6 +147,10 @@ login(){
 			
 			localStorage.setItem('CompanyId', CryptoJS.AES.encrypt(data.companyId,key));
 			localStorage.setItem('CompanyName', CryptoJS.AES.encrypt(data.companyName,key));
+			localStorage.setItem('EmployeeName', CryptoJS.AES.encrypt(data.employeeName,key));
+
+			localStorage.setItem('Department', CryptoJS.AES.encrypt(data.Department,key));
+
 			
 			{/*localStorage.setItem('isLoggedIn',"true");
             
@@ -198,6 +203,8 @@ login(){
        
           },
         });
+
+		alert("alert");
     }
 	 
 

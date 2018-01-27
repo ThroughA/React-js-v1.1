@@ -5,11 +5,12 @@ html{
 }
 
 body{
-  background-color:white;
+  background-color:#4fc8ff!important;
   height:100%;
   width:100%;
-   background-image: url("./image/empbgimage3.png");
-        background-size:cover;
+  /* background-image: url("./image/empbgimage6.png");*/
+
+        background-size:100% 400%;
     background-repeat: no-repeat;
   
 }

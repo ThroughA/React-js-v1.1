@@ -180,7 +180,7 @@ else{
 render(){
  return(
  
-<div class="container">
+<div class="container" style={{ marginBottom: "30%"}}>>
 <h2>Remove Role</h2>
 
 

@@ -138,7 +138,9 @@ Currently there are 2 types of charts, </div>
                                             <dt><strong>Add Employee</strong></dt>
                                             <dd>
                                                 <div>Add Employee Page has the following fields: </div>
-                                                <div>FirstName,LastName,EmployeeProof,DOB,EmployeeID,MobileNo,Address,EmployeeTYpe,EmployeeRole AND Department </div>
+                                                <div>FirstName,LastName,EmployeeProof,</div>
+                                                <div>DOB,EmployeeID,MobileNo,Address,</div>
+                                                <div> EmployeeTYpe,EmployeeRole AND Department </div>
 
                                                 <div>After entering these values, user should click on Submit to add the new employee data in the system. </div>
                                             </dd>
@@ -221,14 +223,17 @@ Currently there are 2 types of charts, </div>
                                 <p></p><dl>
                                     <dt><strong>Daily Report:</strong></dt>
                                     <dd><div>
-                                        Daily Report displays the information about an employee Attendance status on daily basis with information like EmployeeID,EmployeeName,EmployeeType,Department and Status as (Present/Absent)
+                                        Daily Report displays the information about an employee Attendance status on daily basis with information like EmployeeID,EmployeeName,</div>
+                                        <div>EmployeeType,Department and Status as (Present/Absent)
 </div></dd>
                                     <p></p>
                                     <dt><strong>Monthly Report:</strong></dt>
-                                    <dd><div> Monthly Report displays the information about an employee Attendance status on Monthly basis with information like EmployeeID,EmployeeName,EmployeeType,Department and Status as (Present/Absent) </div></dd>
+                                    <dd><div> Monthly Report displays the information about an employee Attendance status on Monthly basis with information like EmployeeID,EmployeeName,</div>
+                                    <div>EmployeeType,Department and Status as (Present/Absent) </div></dd>
                                     <p></p>
                                     <dt><strong>Period Report:</strong></dt>
-                                    <dd><div> Monthly Report displays the information about an employee Attendance status on over a period of time with information like EmployeeID,EmployeeName,EmployeeType,Department and Status as (Present/Absent) </div></dd>
+                                    <dd><div> Monthly Report displays the information about an employee Attendance status on over a period of time with information like EmployeeID,EmployeeName,</div>
+                                    <div>EmployeeType,Department and Status as (Present/Absent) </div></dd>
                                     <p></p>
                                     <dt><strong>Employee Maintenance report:</strong></dt>
 

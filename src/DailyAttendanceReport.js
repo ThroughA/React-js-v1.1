@@ -28,12 +28,12 @@ class DailyAttendanceReport extends Component{
     componentDidMount() {
       /*alert('componentDidMount');
       */
-             var tab='<thead><tr class="headcolor"><th>Id</th><th>Name</th><th>Dept</th><th>CheckIn</th><th>CheckOut</th><th>Status</th><th>Type</th></tr></thead>';
+             var tab='<thead><tr class="headcolor"><th>Id</th><th>Name</th><th>Dept</th><th>CheckIn</th><th>CheckOut</th><th>AuthorizedBy</th><th>Type</th></tr></thead>';
                   
                   
              $.each(this.props.data.employeeRetrievelist, function (i,item) {
                /* alert(item);
-               */ tab += '<tr class="success" ><td>' + item.employeeId + '</td><td>' + item.name + '</td><td>' + item.department + '</td><td>'  + item.checkinTime +'</td><td>' + item.checkoutTime + '</td><td>' + item.status + '</td><td>' + item.employeeType +'</td></tr>';
+               */ tab += '<tr class="success" ><td>' + item.employeeId + '</td><td>' + item.name + '</td><td>' + item.department + '</td><td>'  + item.checkinTime +'</td><td>' + item.checkoutTime + '</td><td>' + item.authorizedBy + '</td><td>' + item.employeeType +'</td></tr>';
             });
             $("#tableHeadings").append(tab);
             var summary='<thead><tr class="headcolor"><th>Type</th><th>#Employee</th><th>Present</th><th>Absent</th></tr></thead>';

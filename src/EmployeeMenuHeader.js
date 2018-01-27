@@ -196,20 +196,20 @@ render(){
 		return(
 		<div>
 
-		<nav class="navbar navbar-default" style={{backgroundColor:"#1d194d"}}>
+		<nav class="navbar navbar-default" style={{backgroundColor:"#002052"}}>
 		  <div class="container-fluid">
-		    <div class="navbar-header" style={{backgroundColor:"#1d194d"}}>
+		    <div class="navbar-header" style={{backgroundColor:"#002052"}}>
 		      <a class="navbar-brand" id="logoheader" onClick= {()=> this.MainPageFunc()} href="#"></a>
 		    </div>
 		    
 		    <div class="navbar-right dropdown" style={{textAlign:"right"}}>
-		    <button  class="btn btn-md dropdown-toggle"  style={{backgroundColor:"#1d194d"}}  type="button" id="menu1" data-toggle="dropdown">
+		    <button  class="btn btn-md dropdown-toggle"  style={{backgroundColor:"#002052"}}  type="button" id="menu1" data-toggle="dropdown">
 		    <a href="#"  class="btn btn-default btn-md">
 		    <span class="glyphicon glyphicon-off"></span>
 		     </a>
 		    </button>
 		<ul id="menulogoutbtn" class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="menu1"
-		    style={{margin: "-24px 1px 2px 2px",padding:" 10px 6px 13px 0"}}>
+		    /* style={{margin: "-24px 1px 2px 2px",padding:" 10px 6px 13px 0"}} */>
 		<li><a href="#"><span class="glyphicon glyphicon-hand-right" onClick= {()=> this.HelpFunc()} style={{float:"left"}}>Help</span></a></li>
 		<li className="divider"></li>
 		<li><a href="#"><span class="glyphicon glyphicon-eye-close" onClick= {()=> this.ResetFunc()} style={{float:"left"}} >ResetPassword</span></a></li>
@@ -221,7 +221,13 @@ render(){
 		</nav>
 
 			<div className="container-fluid " style={{textAlign:"center"}}>
-					<div className="jumbotron" style={{textAlign:"center" ,backgroundColor:"#eeeeee14",color:"white"}}>
+					<div className="jumbotron" style={{textAlign:"center" ,backgroundColor:"#eeeeee14",color:"black",
+        
+        backgroundColor:" #b3e5fc",
+		borderRadius: "10px 50px",
+		boxShadow: "15px 18px 6px -6px rgb(0, 129, 188)"
+        
+    }}>
 						<h2>{CryptoJS.AES.decrypt(localStorage.getItem('CompanyName'),"shinchanbaby").toString(CryptoJS.enc.Utf8)
 						 }</h2>
 						<h4>TicTocks</h4>

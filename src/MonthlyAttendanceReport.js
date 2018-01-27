@@ -59,9 +59,9 @@ class MonthlyAttendanceReport extends Component{
                     async:false,
                     success: function(data,textStatus,jqXHR)
                     {
-                      /* console.log(data);
+                     console.log(data);
                        alert("Monthly Report");
-                      */  ReactDOM.render(
+                       ReactDOM.render(
       <Router>
         <div>
         

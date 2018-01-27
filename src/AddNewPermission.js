@@ -233,7 +233,7 @@ Submit(){
 render(){
     return(
         
-<div class="container">
+<div class="container" style={{ marginBottom: '10%'}} >
 <h2>Task Mapping</h2>
  <form  style={{ paddingBottom: '20px',  position: 'inline-block'}}>
 
@@ -329,7 +329,7 @@ disabled={!this.state.valid}
  marginLeft:"auto",
  marginRight: "auto",
  marginTop: "20px",
- marginBottom: "75px",
+ marginBottom: "10px",
  }}
   onClick={()=>this.Submit()} 
   class="btn btn-success" >Give Permission</button>
